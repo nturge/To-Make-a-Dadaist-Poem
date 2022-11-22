@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <meta charset="utf-8">
+    <meta name="author" content="Nick Turgeon">
+  <title>(type)To Make a Dadaist Poem</title>
+  
+  <style>
+    .keyboard{
+      display:none;
+    }
+
+    .textBox{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      margin: auto;
+      width: 70%;
+      padding-bottom: 15%;
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 40px;
+      position: relative;
+      top: 30vh;
+      
+    }
+    
+  </style>
+  
+</head>
+ 
+<body>
+
+<div class="textBox"> 
+  (type) To Make a Dadaist Poem
+  </div>
+
+<div class="keyboard">
+  <div id="Q"></div>
+  <div id="W"></div>
+  <div id="E"></div>
+  <div id="R"></div>
+  <div id="T"></div>
+  <div id="Y"></div>
+  <div id="U"></div>
+  <div id="I"></div>
+  <div id="O"></div>
+  <div id="P"></div>
+  <div id="A"></div>
+  <div id="S"></div>
+  <div id="D"></div>
+  <div id="F"></div>
+  <div id="G"></div>
+  <div id="H"></div>
+  <div id="J"></div>
+  <div id="K"></div>
+  <div id="L"></div> 
+  <div id="Z"></div>
+  <div id="X"></div>
+  <div id="C"></div>
+  <div id="V"></div>
+  <div id="B"></div>
+  <div id="N"></div>
+  <div id="M"></div>
+  </div>
+
+  <script>
+    
+const arrayA = [
+  'eenie',
+  'meanie',
+  'miney',
+  'mo',
+  'catch',
+  'a',
+  'tiger',
+  'by',
+  'his',
+  'toe',
+	'if',
+	'he',
+	'hollers',
+  'let',
+  'him',
+  'go',  
+]
+
+const arrayB = []
+
+    const keyMap = {
+				"113": { id: "#Q" },
+				"119": { id: "#W" },
+				"101": { id: "#E" },
+				"114": { id: "#R" },
+				"116": { id: "#T" },
+				"121": { id: "#Y" },
+				"117": { id: "#U" },
+				"105": { id: "#I" },
+				"111": { id: "#O" },
+				"112": { id: "#P" },
+				"97": { id: "#A" },
+				"115": { id: "#S" },
+				"100": { id: "#D" },
+				"102": { id: "#F" },
+				"103": { id: "#G" },
+				"104": { id: "#H" },
+				"106": { id: "#J" },
+				"107": { id: "#K" },
+				"108": { id: "#L" },
+				"122": { id: "#Z" },
+				"120": { id: "#X" },
+				"99": { id: "#C" },
+				"118": { id: "#V" },
+				"98": { id: "#B" },
+				"110": { id: "#N" },
+				"109": { id: "#M" }
+			}
+    
+    
+    const url = 'https://api.currentsapi.services/v1/latest-news?' +
+    'language=us&' +
+    'apiKey=ChIdHof6_SjKSkqPErcGbETYYT067m13ZQiYzmK-pAjshydc';
+    const req = new Request(url);
+    fetch(req)
+    .then(function(response) {
+        console.log(response.json());
+    })
+ 
+
+  function fillArray(){
+    for (let i = 97; i < 123; i++){
+      const obj = keyMap[i]
+      const ele = document.querySelector(obj.id)
+let ranNum= Math.floor(Math.random() * arrayA.length)
+let ranItem = arrayA[ranNum]
+ele.innerHTML = ranItem 
+    }  
+  }   
+
+    fillArray()
+    
+  function swapForArray(e) {
+    
+  const c = e.keyCode
+  const obj = keyMap[c]
+  const ele = document.querySelector(obj.id)
+  const content = ele.innerHTML
+    
+    arrayB.push(content)
+	const textBox = document.querySelector('.textBox')
+  textBox.innerHTML = arrayB.join(' ') 
+    
+  let ranNum = Math.floor(Math.random() * arrayA.length)
+  let ranItem = arrayA[ranNum]
+  ele.innerHTML = ranItem
+    console.log(e)
+      }
+   
+    window.addEventListener('keypress', swapForArray)
+    
+  function keyPopper(e){
+    if(e.key === 'Backspace') {
+      arrayB.pop()
+      const textBox = document.querySelector('.textBox')
+      textBox.innerHTML = arrayB.join(' ') 
+    }
+    console.log(e)
+  }
+    window.addEventListener('keydown', keyPopper)
+  
+  
+</script>
+
+</body>
+  
+</html>
