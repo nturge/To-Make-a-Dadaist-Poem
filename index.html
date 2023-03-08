@@ -106,7 +106,7 @@ console.log('the runCount is now' + runCount)
   async function getNews() {
     runCount++
     const pageNumber = runCount
-    const endpoint = `https://newsdata.io/api/1/news?apikey=pub_1409055ef1b441ef303d46bb785eb7b4f0cdf&country=us&language=en&page=${pageNumber}`
+    const endpoint = `https://newsdata.io/api/1/news?apikey=pub_1409055ef1b441ef303d46bb785eb7b4f0cdf&country=us&language=en`
     let response = await fetch(endpoint)
     const json = await response.json()
     console.log(json)
